@@ -39,8 +39,7 @@ struct coordinate_axis {
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
                 if (axis[i][j] == '?') {
-                    cout << "\033[31m" << axis[i][j] << "\033[0m"; // Red color for rectangle
-                } else {
+                    cout << "\033[31m" << axis[i][j] << "\033[0m";
                     cout << axis[i][j];
                 }
             }
