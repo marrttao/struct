@@ -38,7 +38,7 @@ public:
     wheel whl;
     gearbox gbox;
 
-    virtual void print() {
+    void print() {
         cout << "Mark: " << EMPTY_STRING_CHECK(mark) << endl;
         cout << "Color: " << EMPTY_STRING_CHECK(color) << endl;
         cout << "Engine: " << EMPTY_STRING_CHECK(eng.name) << endl;
@@ -52,7 +52,7 @@ public:
         cout << "Ratio: " << EMPTY_INT_CHECK(gbox.ratio) << endl;
     }
 
-    virtual void setAll() {
+    void setAll() {
         cout << "Enter car mark: ";
         cin >> this->mark;
         cout << "Enter car color: ";
@@ -146,7 +146,7 @@ public:
         cout << "Enter gearbox ratio: ";
         cin >> gbox.ratio;
     }
-    virtual void setOne() {
+    void setOne() {
         int choice;
         cout << "Select the attribute to change:" << endl;
         cout << "1. Mark" << endl;
