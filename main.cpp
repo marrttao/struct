@@ -2,8 +2,8 @@
 using namespace std;
 
 struct coordinate_axis {
-    int x=7;
-    int y=5;
+    int x;
+    int y;
 
     void print_coordinate_axis_with_rectangle(int rectX, int rectY, int rectWidth, int rectHeight) {
         const int width = 2 * x + 1;
@@ -36,16 +36,15 @@ struct coordinate_axis {
             }
         }
 
+        // Вывод оси
         for (int i = 0; i < height; i++) {
             for (int j = 0; j < width; j++) {
-                if (axis[i][j] == '?') {
-                    cout << "\033[31m" << axis[i][j] << "\033[0m";
-                    cout << axis[i][j];
-                }
+                cout << axis[i][j];
             }
             cout << endl;
         }
 
+        // Освобождаем память
         for (int i = 0; i < height; ++i) {
             delete[] axis[i];
         }
@@ -54,33 +53,25 @@ struct coordinate_axis {
 };
 
 struct rectangle {
-    int width = 3;
-    int height = 3;
-    int pose_x = 0;
-    int pose_y = 0;
+    int width;
+    int height;
+    int pose_x;
+    int pose_y;
 
-    void change_size(int newWidth, int newHeight, int& axisx, int& axisy) {
+    void change_size(int newWidth, int newHeight, coordinate_axis& axis) {
         width = newWidth;
         height = newHeight;
-        if (pose_x + width > axisx) {
-            axisx = pose_x + width;
+        if (pose_x + width > axis.x) {
+            axis.x = pose_x + width;
         }
-        if (pose_y + height > axisy) {
-            axisy = pose_y + height;
+        if (pose_y + height > axis.y) {
+            axis.y = pose_y + height;
         }
     }
-
-    void change_position(int newX, int newY, int& axisx, int& axisy) {
+    void change_position(int newX, int newY) {
         pose_x = newX;
         pose_y = newY;
-        if (pose_x + width > axisx) {
-            axisx = pose_x + width;
-        }
-        if (pose_y + height > axisy) {
-            axisy = pose_y + height;
-        }
     }
-
     void print_rectangle() {
         cout << "Rectangle: width = " << width << ", height = " << height << ", pose_x = " << pose_x << ", pose_y = " << pose_y << endl;
     }
@@ -88,9 +79,14 @@ struct rectangle {
 
 int main() {
     coordinate_axis axis;
+    axis.x = 7;
+    axis.y = 5;
 
     rectangle rect;
-    
+    rect.width = 5;
+    rect.height = 3;
+    rect.pose_x = 1;
+    rect.pose_y = 2;
 
     int choice;
     do {
@@ -102,7 +98,6 @@ int main() {
         cout << "5. Exit\n";
         cout << "Enter your choice: ";
         cin >> choice;
-        system("cls");
 
         switch (choice) {
         case 1:
@@ -114,7 +109,7 @@ int main() {
             cin >> newWidth;
             cout << "Enter new height: ";
             cin >> newHeight;
-            rect.change_size(newWidth, newHeight, axis.x, axis.y);
+            rect.change_size(newWidth, newHeight, axis);
             break;
         }
         case 3: {
@@ -123,7 +118,7 @@ int main() {
             cin >> newX;
             cout << "Enter new y position: ";
             cin >> newY;
-            rect.change_position(newX, newY, axis.x, axis.y);
+            rect.change_position(newX, newY);
             break;
         }
         case 4:
