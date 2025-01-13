@@ -1,7 +1,7 @@
 #include <iostream>
 using namespace std;
 
-struct Coordinate_Axis {
+struct CoordinateAxis {
     int x;
     int y;
 
@@ -58,7 +58,7 @@ struct Rectangle {
     int pose_x;
     int pose_y;
 
-    void change_size(int newWidth, int newHeight, Coordinate_Axis& axis) {
+    void change_size(int newWidth, int newHeight, CoordinateAxis& axis) {
         width = newWidth;
         height = newHeight;
         if (pose_x + width > axis.x) {
@@ -78,7 +78,7 @@ struct Rectangle {
 };
 
 int main() {
-    Coordinate_Axis axis;
+    CoordinateAxis axis;
     axis.x = 7;
     axis.y = 5;
 
