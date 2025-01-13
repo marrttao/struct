@@ -1,17 +1,17 @@
 #include <iostream>
 using namespace std;
 
-struct point {
+struct Point {
 	int x;
 	int y;
 
-	void distance(point p) {
+	void distance(Point p) {
 		cout << "Distance between points: " << sqrt(pow(p.x - x, 2) + pow(p.y - y, 2)) << endl;
 	}
 };
 
 int main() {
-	point p1, p2;
+	Point p1, p2;
 	cout << "Enter x and y coordinates of point 1: ";
 	cin >> p1.x >> p1.y;
 	cout << "Enter x and y coordinates of point 2: ";
