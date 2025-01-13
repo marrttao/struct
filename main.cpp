@@ -7,25 +7,25 @@ using namespace std;
 #define EMPTY_STRING_CHECK(str) ((str).empty() ? "NOW NOTHING" : (str))
 #define EMPTY_INT_CHECK(value) ((value) == 0 ? "NOW NOTHING" : to_string(value))
 
-struct engine {
+struct Engine {
     string name;
     int displacement = 0;
     int power = 0;
 };
 
-struct wheel {
+struct Wheel {
     int clearance = 0;
     string rubber;
     int diameter = 0;
 };
 
-struct gearbox {
+struct Gearbox {
     int gears = 0;
     string type;
     int ratio = 0;
 };
 
-struct car {
+struct Car {
 protected:
     bool isTruck = false;
     bool isFamilyCar = false;
@@ -34,9 +34,9 @@ protected:
 public:
     string mark;
     string color;
-    engine eng;
-    wheel whl;
-    gearbox gbox;
+    Engine eng;
+    Wheel whl;
+    Gearbox gbox;
 
     void print() {
         cout << "Mark: " << EMPTY_STRING_CHECK(mark) << endl;
@@ -267,24 +267,24 @@ public:
     }
 };
 
-struct sportsCar : public car {
+struct SportsCar : public Car {
 public:
-    sportsCar() { this->isSportsCar = true; }
+    SportsCar() { this->isSportsCar = true; }
 };
 
-struct familyCar : public car {
+struct FamilyCar : public Car {
 public:
-    familyCar() { this->isFamilyCar = true; }
+    FamilyCar() { this->isFamilyCar = true; }
 };
 
-struct truck : public car {
+struct Truck : public Car {
 public:
-    truck() { this->isTruck = true; }
+    Truck() { this->isTruck = true; }
 };
 
 int main() {
     int choice;
-    shared_ptr<car> myCar;
+    shared_ptr<Car> myCar;
 
     do {
         cout << "Select car type:" << endl;
@@ -297,13 +297,13 @@ int main() {
 
         switch (choice) {
         case 1:
-            myCar = make_shared<sportsCar>();
+            myCar = make_shared<SportsCar>();
             break;
         case 2:
-            myCar = make_shared<familyCar>();
+            myCar = make_shared<FamilyCar>();
             break;
         case 3:
-            myCar = make_shared<truck>();
+            myCar = make_shared<Truck>();
             break;
         case 4:
             cout << "Exiting..." << endl;
